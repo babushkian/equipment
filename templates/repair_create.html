@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Создать заявку на ремонт</h1>
+<form method="post">
+  {{form.csrf_token }}
+    {% for field in form if field.name not in ['csrf_token', 'submit'] -%}
+    <div class="row">
+        {{field.label}}
+        {{field}}
+    </div>
+    {% endfor %}
+    <div class="row">
+    {{form.submit}}
+    </div>
+
+</form>
+{% endblock content %}

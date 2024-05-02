@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ремонт</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css')}}"
+    />
+    {% macro action_button(bd) -%}  {% if bd['display'] %}
+    <form action="{{ url_for(bd['endpoint']) }}" method="{{ bd['method'] }}">
+      <button type="submit" name="{{ bd['name'] }}" value="{{ bd['value'] }}">
+        {{ bd['title'] }}
+      </button>
+    </form>
+    {{right_brace | safe}} {% endif %} {%- endmacro %}
+
+    {% macro table_cell(content, key) -%}
+      {% if content %}
+        <td {% if key == 'fresh' %} hidden {% endif %}>
+          {{content| safe }}
+        </td>
+      {% else %}
+        <td {% if key == 'fresh' %} hidden {% endif %}></td>
+      {% endif %}
+    {%- endmacro %}
+  </head>
+  <body>
+    <div class="header">
+      <div class="header_row">
+        <div class="links-block">
+          <div class="menu_option">
+            <a href="{{url_for('equipment_table')}}"> Оборудование </a>
+          </div>
+          <div class="menu_option">
+            <a href="{{url_for('repair_table')}}">Заявки на ремонт</a>
+          </div>
+        </div>
+        <div class="user-block">
+          <span>{{ data['user']['name'] }} ({{ data['user'].position.name }})</span>
+          <form action="{{ url_for('logout') }}" method="get">
+            <button type="submit">выйти</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content_window">
+        {% for cat, msg in get_flashed_messages(True) %}
+          <div class="alert alert-{{cat}}" role="alert"> <span>{{msg}}</span></div>
+        {% endfor %}
+
+        {% block content %} {% endblock content %}
+      </div>
+    </div>
+  {% block js%}
+  {% endblock js%}
+  </body>
+</html>

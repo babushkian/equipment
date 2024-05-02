@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content%}
+<h1>Комментарии к заявке на ремонт № {{ data['repair']['repair_number'] }}</h1>
+
+<div class="frame">
+    {{ data['comments'] | safe}}
+</div>
+
+<form action="{{ url_for('repair_comment_process') }}" method="post">
+    <div class="row">
+        {{form.csrf_token }}
+        {{form.repair_id}}
+        {{form.comment}}
+        {{form.submit}}
+    </div>
+</form>
+
+{% endblock content%}

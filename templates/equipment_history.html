@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Оборудование <b>«{{data['title']['equipment']}}»</b>, текущий статус:  «{{data['title']['status']}}»</h1>
+{% if data['data'] %}
+    {% include "repair_table.html" %}
+{% else %}
+    Отсутствует история ремонтов
+{% endif %}
+{% endblock content %}

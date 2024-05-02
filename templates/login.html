@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ремонт</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css')}}"
+    />
+  </head>
+<body>
+<div class="content">
+    <div class="content_window">
+<h1>Выберите сотрудника</h1>
+<form action="{{ url_for('login') }}" method="post">
+    {{form.csrf_token }}
+    {{form.user_id}} {{form.submit}}
+</form>
+</div>
+    </div>
+</body>
+</html>

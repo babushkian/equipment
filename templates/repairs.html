@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Список ремонтов</h1>
+    <div class="hide_old_repairs">
+      <span>Отображение старых ремонтов: </span
+      ><button class="toggler">Скрыть</button>
+    </div>
+{{ action_button(data['add-repair']) }}
+{% include "repair_table.html" %}
+{% endblock content %}
+{% block js%}
+<script src="{{url_for('static', filename = 'js/main.js')}}"></script>
+{% endblock js%}

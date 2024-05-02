@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Добавить новое оборудование</h1>
+<form method="post">
+    <div class="row">
+        {{ form.csrf_token }}
+        {{form.equipment_name.label}} {{form.equipment_name}} {{form.submit}}
+
+    </div>
+</form>
+{% endblock content %}

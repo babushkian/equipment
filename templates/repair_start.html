@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Начать ремонт оборудования <b>«{{data['title']['equipment']}}»</b> по заявке № {{data['title']['repair_number']}}</h1>
+
+<div class="frame">
+{% for i in data['info'] %}
+    <div class="row"> <span>{{i}}</span><span>{{data['info'][i]}}</span>
+    </div>
+ {% endfor%}
+</div>
+<form action="{{ url_for('repair_start_process') }}" method="post">
+    {{form.hidden_tag()}}
+    {%for field in form if field.name not in ['repair_id', 'csrf_token', 'submit']%}
+    <div class="row">
+        {{field.label}} {{field}}
+    </div>
+    {% endfor %}
+    <div class="row">
+        {{form.submit}}
+    </div>
+</form>
+
+
+{% endblock content %}

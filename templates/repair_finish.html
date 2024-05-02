@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Закончить ремонт оборудования <b>«{{data['title']['equipment']}}»</b> по заявке № {{data['title']['repair_number']}}</h1>
+
+<div class="frame">
+<div class="row"> <span>Описание: {{data['form']['description']}}</span></div>
+        <div class="row"> <span>Исполнители: {{data['form']['executors']}}</span></div>
+<div class="row"> <span>Дата окончания ремонта: {{ data['form']["repair_date"]}}</span></div>
+</div>
+<form action="{{ url_for('repair_finish_process') }}" method="post">
+    <input type="hidden" name="repair_id" value="{{ data['form']['repair_id']}}">
+    <div class="row">
+        <button type="submit">Подтвердить</button>
+    </div>
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заявка на ремнот</title>
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+</style>
+</head>
+<body>
+<div class="container"></div>
+<form method="post">
+    <div class="row">
+        <label for="equipment">Оборудование</label>
+        <select name="equipment" id="equipment">
+        {% for e in equipment %}
+             <option value="{{ e['id'] }}"> {{ e['name'] }}</option>
+        {% endfor %}
+    </select>
+    </div>
+    <div class="row">
+        <label for="description">Описание поломки</label>
+        <input type="text" name="description" id="description">
+    </div>
+    <button type="submit">Подтвердить</button>
+</form>
+
+</body>
+</html>

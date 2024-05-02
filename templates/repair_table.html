@@ -1,0 +1,32 @@
+<table class="table">
+    <thead>
+    <tr>
+
+    {% for head in data['header'] %}
+
+        <th {% if head == 'fresh' %} hidden {% endif %}>
+            {{data['header'][head]}}
+        </th>
+    {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% if data['data'] %}
+        {% for row_ in data['data'] %}
+        <tr>
+            {% for key in data['header'] -%}
+                {% if key == 'action-buttons' %}
+                    <td>
+                    {% for button in row_[key] %}
+                        {{ action_button(row_[key][button]) }}
+                    {% endfor %}
+                    </td>
+                {% else %}
+                   {{ table_cell(row_[key], key) }}
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    {% endif %}
+        </tbody>
+</table>

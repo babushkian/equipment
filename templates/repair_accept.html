@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Принять в работу оборудование <b>«{{data['title']['equipment']}}»</b> по заявке № {{data['title']['repair_number']}}</h1>
+
+
+
+    <div class="row">
+        Описание: {{data['form']['description']}}
+    </div>
+    <div class="row">
+        Принимающий:   {{data['form']['accepted_employee']}}
+    </div>
+    <div class="row">
+        Дата окончания ремонта: {{ data['form']["repair_date"]}}
+    </div>
+
+    <div class="row">
+        Дата приянтия в работу: {{ data['form']["accept_date"]}}
+    </div>
+
+<form action="{{ url_for('repair_accept_process') }}" method="post">
+    <input type="hidden" name="repair_id" value="{{ data['form']['repair_id']}}">
+    <div class="row">
+        <button type="submit">Подтвердить</button>
+    </div>
+</form>
+
+
+{% endblock content %}

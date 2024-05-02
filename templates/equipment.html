@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Список оборудования</h1>
+    {{ action_button(data['add-equipment']) }}
+{% include "repair_table.html" %}
+{% endblock content %}
